@@ -1,4 +1,5 @@
 <?php include('../template/cabecera.php')?>
+<?php include('../secciones/gestion.php')?>
 
 <div class="col-md-5">
 
@@ -35,8 +36,8 @@
     <input
         type="datetime-local"
         class="form-control"
-        name="Fecha/Hora"
-        id="Fecha/Hora"
+        name="fecha"
+        id="fecha"
         aria-describedby="helpId"
         placeholder="Fecha/Hora"/>
 </div>
@@ -56,9 +57,9 @@
 <br>
 
 <div class="btn-group" role="group" aria-label="Button group name">
-    <button type="button" class="btn btn-success">Agregar</button>
-    <button type="button" class="btn btn-warning">Editar</button>
-    <button type="button" class="btn btn-danger">Borrar</button>
+    <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
+    <button type="submit" name="accion" value="editar" class="btn btn-warning">Editar</button>
+    <button type="submit" name="accion" value="borrar" class="btn btn-danger">Borrar</button>
 </div>
 
     </div>
@@ -86,14 +87,16 @@
                 </tr>
             </thead>
             <tbody>
+            <?php foreach($listaNombre as $nombre){?>
                 <tr>
-                    <td>1</td>
-                    <td>Nombre</td>
-                    <td>Mensaje</td>
-                    <td>Fecha/Hora</td>
+                    <td><?php echo $nombre['id']?></td>
+                    <td><?php echo $nombre['nombre']?></td>
+                    <td><?php echo $nombre['mensaje']?></td>
+                    <td><?php echo $nombre['fecha']?></td>
                     <td>Leído/ No Leído</td>
                     <td>Seleccionar</td>
                 </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>
