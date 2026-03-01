@@ -7,20 +7,20 @@ def generar_reporte():
         time.sleep(5)
         conexion = mysql.connector.connect(
             host ="db",
-            user ="admin",
-            password ="admin",
+            user ="root",
+            password ="rootpassword",
             database ="portafolio_db"
         )
         cursor = conexion.cursor()
         
         cursor.execute("SELECT COUNT(*) FROM contactos") #Esto es para consultar los mensajes
-        total = cursor.fetchone[0]
+        total = cursor.fetchone()[0]
         
-        ruta_reporte = "/app/ouput/reporte.txt"
+        ruta_reporte = "/app/output/reporte.txt"
         
         with open(ruta_reporte, "w") as f:
             f.write(f"Reporte de Mensajes\n")
-            f.write(f"=====================\n")
+            f.write(f"========================================\n")
             f.write(f"total de mensajes recibidos: {total}\n")
             f.write(f"Ultima actualizcion: {time.strftime('%d-%m-%Y %H:%M:%S')}")
             
@@ -31,4 +31,6 @@ def generar_reporte():
         print(f"Error al generar reporte: {e}")
     
 if __name__ == "__main__":
-    generar_reporte()
+    while True:
+        generar_reporte()
+        time.sleep(1)
