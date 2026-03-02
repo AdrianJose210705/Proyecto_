@@ -57,45 +57,52 @@
 
 </div>
 <div class="col-md-7">
-<div class="card">
-<div class="card-header">Tabla de Gestion de datos</div>
-<div class="card-body">
-    <div
-        class="table-responsive"
-    >
-        <table
-            class="table"
-        >
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Mensaje</th>
-                    <th scope="col">Fecha/Hora</th>
-                    <th scope="col">Leído</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach($listaNombre as $nombre){?>
-                <tr>
-                    <td><?php echo $nombre['id']?></td>
-                    <td><?php echo $nombre['nombre']?></td>
-                    <td><?php echo $nombre['mensaje']?></td>
-                    <td><?php echo $nombre['fecha']?></td>
-                    <td><?php echo ($nombre['leido'] ?? 0) ? "Leido" : "No Leido"; ?></td>
-                    <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="id" id="id" value="<?php echo $nombre['id']?>"/>
-                        <input type="submit" value="Seleccionar" name="accion" class="btn btn-info"/>
-                    </form>
-                    </td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
+    <div class="card">
+        <div class="card-header">Tabla de Gestion de datos</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Mensaje</th>
+                            <th scope="col">Fecha/Hora</th>
+                            <th scope="col">Leído</th> <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($listaNombre as $nombre){ ?>
+                        <tr>
+                            <td><?php echo $nombre['id']?></td>
+                            <td><?php echo $nombre['nombre']?></td>
+                            <td><?php echo $nombre['mensaje']?></td>
+                            <td><?php echo $nombre['fecha']?></td>
+                            
+                            <td>
+                                <?php 
+                                    $estadoActual = $nombre['leido'] ?? 0;
+                                    $nuevoEstado = ($estadoActual == 1) ? 0 : 1; 
+                                ?>
+                                <a href="cambiar_estado.php?id=<?php echo $nombre['id']; ?>&st=<?php echo $nuevoEstado; ?>" 
+                                   class="btn <?php echo ($estadoActual == 1) ? 'btn-success' : 'btn-outline-danger'; ?> btn-sm">
+                                    <?php echo ($estadoActual == 1) ? 'Leído' : 'No Leído'; ?>
+                                </a>
+                            </td>
+
+                            <td>
+                                <form action="" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $nombre['id']?>"/>
+                                    <input type="submit" value="Seleccionar" name="accion" class="btn btn-info"/>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
 </div>
 
 <?php include('../template/pie.php')?>
