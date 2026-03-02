@@ -18,7 +18,7 @@ def generar_reporte():
         
         ruta_reporte = "/app/output/reporte.txt"
         
-        with open(ruta_reporte, "w") as f:
+        with open(ruta_reporte, "a") as f:
             f.write(f"Reporte de Mensajes\n")
             f.write(f"========================================\n")
             f.write(f"total de mensajes recibidos: {total}\n")
