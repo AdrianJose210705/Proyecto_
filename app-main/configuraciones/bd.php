@@ -3,6 +3,7 @@ class BD {
     public static $instancia = null;
     public static function crearInstancia(){
         if (!isset(self::$instancia)){        
+            // Configuración para el docker
             $host = "db"; 
             $bd = "portafolio_db";
             $usuario = "root";
@@ -10,11 +11,12 @@ class BD {
             try {
                 self::$instancia = new PDO("mysql:host=$host;dbname=$bd", $usuario, $contrasena);
                 self::$instancia->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
             } catch (Exception $ex) {
                 echo "Error de conexión: " . $ex->getMessage();
             }
+            return self::$instancia;     
         }
-        return self::$instancia;     
     }
 }
 ?>
