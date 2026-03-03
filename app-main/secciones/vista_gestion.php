@@ -84,7 +84,7 @@
                                     $estadoActual = $nombre['leido'] ?? 0;
                                     $nuevoEstado = ($estadoActual == 1) ? 0 : 1; 
                                 ?>
-                                <a href="cambiar_estado.php?id=<?php echo $nombre['id']; ?>&st=<?php echo $nuevoEstado; ?>" 
+                                <a href="gestionar_leido.php?id=<?php echo $nombre['id']; ?>&st=<?php echo $nuevoEstado; ?>" 
                                    class="btn <?php echo ($estadoActual == 1) ? 'btn-success' : 'btn-outline-danger'; ?> btn-sm">
                                     <?php echo ($estadoActual == 1) ? 'Leído' : 'No Leído'; ?>
                                 </a>
